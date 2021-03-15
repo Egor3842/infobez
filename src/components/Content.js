@@ -7,12 +7,17 @@ import s from './Content.module.css'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ReactMarkdown from 'react-markdown'
+import DecreeFire from '../docs/DecreeFire'
 
 import { data } from '../data'
+import ForGoToJob from '../docs/ForGoToJob';
+import ApplicationForFire from '../docs/ApplicationForFire';
+import Relax from '../docs/Relax';
+import AnotherJob from '../docs/AnotherJob';
 
 
 
-const Content = ({ currentRule, currentType,setOpen, open }) => {
+const Content = ({ currentRule, currentType,setOpen, open,currentLaba,currentDocs }) => {
    
     const currentLayor = data.find((elem) => elem.id === currentType);
     const currentForRender = currentLayor.info.find(elem => elem.id === currentRule)
@@ -26,6 +31,8 @@ const Content = ({ currentRule, currentType,setOpen, open }) => {
         }
     }
     return (
+        <>
+        {currentLaba === 0 ? 
         <div className={s.container}>
             <div className={s.title}>Основные законы и статьи</div>
             {currentForRender.data.map((elem) => {
@@ -49,6 +56,14 @@ const Content = ({ currentRule, currentType,setOpen, open }) => {
                 )
             })}
         </div>
+        : <div className={s.container}>
+              <div className={s.title}>Организационно­­-распорядительные документы для разрабочика в IT компании</div>
+            {currentDocs === 0 ? <ForGoToJob/> : currentDocs === 1 ? <DecreeFire/> : currentDocs === 2 ? <ApplicationForFire/> : currentDocs === 3 ? <Relax/> : <AnotherJob/>}
+        </div>
+}
+          </> 
+
+    
     )
 }
 
